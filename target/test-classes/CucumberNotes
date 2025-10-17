@@ -72,10 +72,21 @@ every gherkin step.
 doesn't matter which feature file but has to have 1 gherkin step 1 java step
 
 
-TestRunner class will be executing our cucumber features
+TestRunner class will be executing our cucumber features using junit
 based on configs it can execute one or multiple feature files
 to execute feature files, we will be using jUnit. so when we add in in pom
 using java, to run cucumber tests, use cucumber junit..
 
-to implement we need to create a sepeate test runner class insuede test runner class we need to specify which cucumber features we will be running
+to implement we need to create a separate test runner class insuede test runner class we need to specify which cucumber features we will be running
 on top of the class we will have to specify keywords, we will specifiy annoation @RunWith  a junit annoation we will specify running cucumber class
+
+Test Runner - will help us execute all cucumber tests using jUnit
+we will have to specify configurations using CucumberOptions:
+
+features: = "src\test\resources\features" which will specify which feature file to run
+OR if you want specific src\test\resouces\login.feature
+
+glue = com\hrms\steps - we we can find implementation code for gherkin steps
+
+dryRun - if its set to true, then it will scan to find whether we missed any steps/implementation or not
+

@@ -28,6 +28,8 @@ public class LoginSteps extends CommonnMethods {
 	@When("user enters valid admin username and password")
 	public void user_enters_valid_admin_username_and_password() {
 		login.login(ConfigsReader.getProperty("username"), ConfigsReader.getProperty("password"));
+		sendText(login.username, "terri");
+		sendText(login.password, "gfhfhh");
 		
 	}
 
@@ -46,14 +48,15 @@ public class LoginSteps extends CommonnMethods {
 	}
 	@When("user enter valid ess username and password")
 	public void user_enter_valid_ess_username_and_password() {
-		login.login("Terri", "djgdkgjfg");
+		sendText(login.username, "Terri");
+		sendText(login.password, "dgfhfh");
 	    
 	}
 	@Then("ess user is successfully logged in")
 	public void ess_user_is_successfully_logged_in() {
 		String expected = "Welcome Terri";
 		String actual = dashboard.welcome.getText();
-		Assert.assertEquals(actual, expected, "Welcome message is not displayed or not correct");
+		Assert.assertEquals("Welcome msg is not displayed or not correct", expected, actual);
 		System.out.println(actual);
 		wait(3);
 		//tearDown();

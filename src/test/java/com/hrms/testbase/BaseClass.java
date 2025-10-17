@@ -6,14 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
 import com.hrms.utils.ConfigsReader;
 import com.hrms.utils.Constants;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
-	
+
 	public static WebDriver driver;
 
 	public static WebDriver setUp() {
@@ -41,10 +40,17 @@ public class BaseClass {
 		driver.get(ConfigsReader.getProperty("url"));
 
 		return driver;
+		
+	
 	}
 
+	public static void tearDown() {
+	if (driver != null) {
+			driver.quit();
 
 		}
+	}
+}
 	
 
 
