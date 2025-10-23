@@ -19,6 +19,10 @@ public class PersonalDetailsPageElements {
 	@FindBy(xpath="//div[@id=pdMainContainer']")
 	public WebElement lblPersonalDetails;
 	
+	@FindBy(xpath="//div[@id='profile-c']//h1")
+	public WebElement profilePic;
+	
+	
 	public PersonalDetailsPageElements() {
 		PageFactory.initElements(BaseClass.driver, this);
 	}

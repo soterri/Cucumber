@@ -90,3 +90,21 @@ glue = com\hrms\steps - we we can find implementation code for gherkin steps
 
 dryRun - if its set to true, then it will scan to find whether we missed any steps/implementation or not
 
+HOOKS - a block of code that gets executed before and after each scenario
+@Before
+@After
+When preconditions and post condition are same for all scenarios
+
+
+Execution process
+1. Before Hook
+2. Background
+3. All scenario steps
+4. After hook
+same process for every scenario
+
+Hooks VS Background
+hooks applicable for all scenarios within the project
+while background for all scenarios within particular feature file 
+that has the same gherkin steps
+

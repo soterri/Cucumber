@@ -18,6 +18,9 @@ import io.cucumber.junit.CucumberOptions;
 	//strict = true,
 	//tags = "@regression"
 	tags = "@sprint13"
+	//tags = "@smoke and @regression"
+	
+	
 	
 )
 
@@ -31,8 +34,8 @@ public class TestRunner {
  * specifying which features to run and glue for implementation steps
  * before actual execution, use dryRun to scan all features, gherkin steps, java steps
  *
- *Runner tesgt will help us to execute our cucumber featurees to run
- *cucumer features using cucumber option we are specfigying some configs 
+ *Runner test will help us to execute our cucumber featurees to run
+ *cucumber features using cucumber option we are specfigying some configs 
  *there are diff cucumber options we have we 100 need features specifiying path to tfeature file we want to run
  *then using glue we specifinyg  the name of our package and go inside package and all the implemenation steps you will find 
  *dry run - quickly check if steps have implementation specify dry run to true
