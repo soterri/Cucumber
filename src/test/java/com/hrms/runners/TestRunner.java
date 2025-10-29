@@ -9,7 +9,9 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions (
 	features = "src\\test\\resources\\features", //specify which feature file to run
 	//inout case we say to run all features inside features package
+	
 	glue = "com/hrms/steps",//where we can find implementation code for gherkin steps
+	
 	dryRun = true,//quickly scans all features, all gherkin steps, all java steps and will let us 
 	//know to provide implementation for steps before execution
 	//simply checks all steps have implementation code
@@ -17,7 +19,7 @@ import io.cucumber.junit.CucumberOptions;
 	monochrome = true,
 	//strict = true,
 	//tags = "@regression"
-	tags = "@sprint13"
+	tags = "@inProgress"
 	//tags = "@smoke and @regression"
 	
 	
