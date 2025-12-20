@@ -229,8 +229,10 @@ public class CommonnMethods extends PageInitializer {
 	 * @return 
 	 */
 	
-	public static String takeScreenshot(String filename) {
+	public static byte[] takeScreenshot(String filename) {
 		TakesScreenshot ts = (TakesScreenshot) driver;
+		byte[] picBytes=ts.getScreenshotAs(OutputType.BYTES);
+		
 		File file = ts.getScreenshotAs(OutputType.FILE);
 		String destionationFile=Constants.SCREENSHOT_FILEPATH+filename+getTimeStamp()+" .png";
 		
@@ -240,7 +242,7 @@ public class CommonnMethods extends PageInitializer {
 			System.out.println("Cannot take screenshot");
 			e.printStackTrace();
 		}
-		return destionationFile;
+		return picBytes;
 	}
 
 	public static void wait(int second) {

@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.hrms.pages.PersonalDetailsPageElements;
 import com.hrms.utils.CommonnMethods;
+import com.hrms.utils.Constants;
+import com.hrms.utils.ExcelUtility;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -90,40 +92,62 @@ public class AddEmployeeSteps extends CommonnMethods {
 	public void and_is_added_succesfully(String string, String string2, String string3) {
 		System.out.println("Employee is added");
 	}
+
 	@When("user enters employee details and click on save")
 	public void user_enters_employee_details_and_click_on_save(DataTable dataTable) {
-	  List<Map<String, String>> addEmployeeList=dataTable.asMaps();
-		
-	  for(Map<String, String> addEmpListMap:addEmployeeList) {
-		  
-		  String fname = addEmpListMap.get("FirstName");
-		  String mname = addEmpListMap.get("MiddleName");
-		  String lname = addEmpListMap.get("lastName");
-		  
-		  sendText(addEmp.firstName, addEmpListMap.get("FirstName"));
-		  sendText(addEmp.lastName, addEmpListMap.get("lastName"));
-		  sendText(addEmp.middleName, addEmpListMap.get("MiddleName"));
-		  click(addEmp.saveBtn);
-		  
-		  String actual=pdetail.profilePic.getText();
-		  String expected = fname+" "+lname+" "+mname;
-		  Assert.assertEquals("Emp is not added successfully", "");
-		 jsClick(dashboard.addEmp);
-		  
-	  }
-		
+		List<Map<String, String>> addEmployeeList = dataTable.asMaps();
+
+		for (Map<String, String> addEmpListMap : addEmployeeList) {
+
+			String fname = addEmpListMap.get("FirstName");
+			String mname = addEmpListMap.get("MiddleName");
+			String lname = addEmpListMap.get("lastName");
+
+			sendText(addEmp.firstName, addEmpListMap.get("FirstName"));
+			sendText(addEmp.lastName, addEmpListMap.get("lastName"));
+			sendText(addEmp.middleName, addEmpListMap.get("MiddleName"));
+			click(addEmp.saveBtn);
+
+			String actual = pdetail.profilePic.getText();
+			String expected = fname + " " + lname + " " + mname;
+			Assert.assertEquals("Emp is not added successfully", "");
+			jsClick(dashboard.addEmp);
+
+		}
+
 		// Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
-	    
+		// For automatic transformation, change DataTable to one of
+		// E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+		// Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+		// Double, Byte, Short, Long, BigInteger or BigDecimal.
+		//
+		// For other transformations you can register a DataTableType.
+
 	}
+
 	@Then("employee is added")
 	public void employee_is_added() {
 		System.out.println("----employee is added using datatable");
 	}
 
+	@When("user enters employee data from {string} excel sheet then employee is added")
+	public void user_enters_employee_data_from_excel_sheet_then_employee_is_added(String sheetName) {
+		List<Map<String, String>> excelList=ExcelUtility.excelIntoListOfMaps(Constants.TESTDATA_FILEPATH, sheetName);
+
+		for(Map<String, String> data:excelList) {
+			String fname = data.get("FirstName");
+			String mname = data.get("MiddleName");
+			String lname = data.get("LastName");
+			
+			sendText(addEmp.firstName, fname);
+			sendText(addEmp.middleName, mname);
+			sendText(addEmp.lastName, lname);
+			click(addEmp.saveBtn);
+			
+		//	String actual = pdetail.profileName.getText();
+			String expected = fname+" "+mname+" "+lname;
+			//Assert.assertEquals("Employee is not added successfully", expected, actual);
+			//jsClick(dashboard.addEmp);
+		}
+	}
 }

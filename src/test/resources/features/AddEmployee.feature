@@ -39,6 +39,11 @@ Examples:
 |John|A|Bitch|
 |Terri|WillBe|Successful|
 
+@excel
+Scenario:
+Adding multiple employees from excel
+When user enters employee data from "EmployeeLoginCredentials" excel sheet then employee is added
+
 
 
 

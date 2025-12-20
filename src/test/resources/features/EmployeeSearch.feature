@@ -1,20 +1,19 @@
-Feature:
-Employee Search
+@searchEmployee @sprint13
+Feature:Employee Search
 
+Background:
+Given user is logged in with valid admin credentials
+And user navigates to Employee List page
+
+@smoke
 Scenario:
 Search employee by ID
-
-Given user navigated to HRMS
-And user is logged in with valid admin credentials
-And user navigates to Employee List page
-When user enters valid employee id
+When user enters valid employee id "45454"
 And clicks on search button
 Then users sees employee information is displayed
 
+@regression
 Scenario:
-Given user navigated to HRMS
-And user is logged in with valid admin credentials
-And user navigates to Employee List page
-When user enters valid employee name and last name
+When user enters valid employee "Terri" and "Thach"
 And clicks on search button
 Then users sees employee information is displayed

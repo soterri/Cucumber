@@ -1,9 +1,9 @@
 @searchEmployee @sprint12
 Feature: Login
 
-  @smoke @validLogin
+  @maven
   Scenario:
-Valid admin login
+   Valid admin login
 
     Given user navigated to HRMS
     When user enters valid admin username and password
@@ -12,7 +12,7 @@ Valid admin login
 
   @smoke
   Scenario:
-Valid ess login
+  Valid ess login
 
     Given user navigated to HRMS
     When user enter valid ess username and password

@@ -47,10 +47,16 @@ public class LoginSteps extends CommonnMethods {
 		wait(3);
 	}
 	@When("user enter valid ess username and password")
-	public void user_enter_valid_ess_username_and_password() {
-		sendText(login.username, "Terri");
-		sendText(login.password, "dgfhfh");
+	public void user_enter_valid_ess_username_and_password(String username, String password) {
+		sendText(login.username, username);
+		sendText(login.password, password);
 	    
+	}
+	
+	@Then("user see {string}")
+	public void user_see(String errorMsg) {
+		Assert.assertEquals("Error message is incorrectly displayed", errorMsg, login.errorMsg.getText());
+		
 	}
 	@Then("ess user is successfully logged in")
 	public void ess_user_is_successfully_logged_in() {

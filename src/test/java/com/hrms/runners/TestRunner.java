@@ -19,8 +19,16 @@ import io.cucumber.junit.CucumberOptions;
 	monochrome = true,
 	//strict = true,
 	//tags = "@regression"
-	tags = "@inProgress"
+	tags = "@excel"
 	//tags = "@smoke and @regression"
+	,plugin= {
+			"pretty", //prints gherkin steps in console
+			"html:target/cucumber-default-report", //creates basic HTML report in specified location
+			"json/target/cucumber.json",
+			"rerun:target/failed.txt"
+			
+	}
+	
 	
 	
 	

@@ -17,9 +17,9 @@ public class EmployeeSearchSteps extends CommonnMethods{
 
 	}
 
-	@When("user enters valid employee id")
-	public void user_enters_valid_employee_id() {
-		sendText(viewEmp.empId, "545445");
+	@When("user enters valid employee id {string}")
+	public void user_enters_valid_employee_id(String empID) {
+		sendText(viewEmp.empId, empID);
 
 	}
 
@@ -31,10 +31,12 @@ public class EmployeeSearchSteps extends CommonnMethods{
 	@Then("users sees employee information is displayed")
 	public void users_sees_employee_information_is_displayed() {
 		System.out.println("Emp is displayed");
+		tearDown();
 	}
 
-	@When("user enters valid employee name")
-	public void user_enters_valid_employee_name() {
+	@When("user enters valid employee {string} and {string}")
+	public void user_enters_valid_employee_name_and_last_name() {
+		
 
 	}
 }

@@ -108,3 +108,21 @@ hooks applicable for all scenarios within the project
 while background for all scenarios within particular feature file 
 that has the same gherkin steps
 
+Scenario consists of steps that will be executed only once whille
+using scenario outline we will execue same steps/scenarios # of times
+depending on how much data we will specify in Examples
+
+Example of a US for Cucumber
+US 55454: As an admin, user should see 8 dashboard menus displayed
+Admin
+Pim
+Leave
+Time
+Recruitment
+Performance
+Dashboard
+Directory
+
+Implementing Cucumber Maven Reports:
+
+1. Specify json plugin in our test runner - it will generste .json file

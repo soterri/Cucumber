@@ -2,6 +2,10 @@ package com.hrms.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -49,7 +53,7 @@ public class ExcelUtility {
 		int rows = rowCount();
 		int cols = colsCount(0);
 
-		Object[][] data = new Object[rowCount() - 1][colsCount(0)];
+		Object[][] data = new Object[rows - 1][colsCount(0)];
 
 		// iterating rows
 		for (int i = 1; i <= rows; i++) {
@@ -61,5 +65,25 @@ public class ExcelUtility {
 			}
 		}
 		return data;
+	}
+
+	public static List<Map<String, String>> excelIntoListOfMaps(String filePath, String sheetName) {
+		openExcel(filePath);
+		loadSheet(sheetName);
+
+		List<Map<String, String>> listMap = new ArrayList<>();
+		Map<String, String> excelMap;
+
+		for (int r = 1; r < rowCount(); r++) {
+			excelMap = new LinkedHashMap<>();
+			
+			for(int c=0; c<colsCount(r); c++) {
+				excelMap.put(cellData(0, c), cellData(r, c));
+			}
+			listMap.add(excelMap);
+
+		}
+		return listMap;
+
 	}
 }

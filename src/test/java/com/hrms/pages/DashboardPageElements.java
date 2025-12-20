@@ -1,5 +1,7 @@
 package com.hrms.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -24,9 +26,13 @@ public class DashboardPageElements extends CommonnMethods {
 	@FindBy(id="//a[@id='menu_pim']")
 	public WebElement empListPage;
 	
+	@FindBy(xpath="//div[@class='menu']/ul/li")
+	public List<WebElement> dashMenu;
+	
 	public DashboardPageElements() {
 		PageFactory.initElements(BaseClass.driver, this);
 		
+	//div[@class='menu']/ul/li
 	}
 	public void navigateToAddEmployee() {
 		jsClick(addEmp);
