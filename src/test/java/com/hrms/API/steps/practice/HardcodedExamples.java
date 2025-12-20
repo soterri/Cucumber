@@ -43,14 +43,19 @@ public class HardcodedExamples {
 	
 		/*
 		 * Two ways to print response
-		 * prettyPrint() mtehod converts JSON obj into String and prints - no need to SOP
+		 * prettyPrint() method converts JSON obj into String and prints - no need to SOP
 		 */
 		getOneEmployeeResponse.prettyPrint();
 		//String response = getOneEmployeeResponse.body().asString();
 		//System.out.println(response);
 		
-		//Verifying status code is 200
+		//Verifying response status code is 200
 		getOneEmployeeResponse.then().assertThat().statusCode(200);
+		
+		
+		
+		
+		
 		
 		
 	}
