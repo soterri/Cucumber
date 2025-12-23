@@ -110,9 +110,10 @@ public class HardcodedExamples {
 	}
 	
 	@Test
-	public void getCreatedEmployee() {
+	public void bGETCreatedEmployee() {
 	/**
 	 * preparing request for /getOneEmployee.php
+	 * using log().all() to see all info being sent with request
 	 */
 		RequestSpecification getCreatedEmployeeRequest = given().header("Content-Type", "application/json")
 		.header("Authorization", token).queryParam("employee_id", employeeID).log().all();
