@@ -1,12 +1,12 @@
 package com.hrms.API.steps.practice;
 
+import static io.restassured.RestAssured.given;
+
+import org.junit.Test;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
-import static io.restassured.RestAssured.*;
-
-import java.net.ResponseCache;
 
 public class HardcodedExamples {
 
@@ -16,8 +16,12 @@ public class HardcodedExamples {
 	 *  when -making call to the end point 
 	 *  then - validating, verifying, asserting
 	 */
+	
+	static String baseURI =RestAssured.baseURI = "http://syntaxHRMSwebsitethatIdonothaveaccessto";
+	String token = "create a token on postman Bearer:kgfkhjkhjgfhkjgkhj";
+	
+	public void SampleTestNotes() {
 
-	public static void main(String[] args) {
 
 		/*
 		 * Base URI for all calls
@@ -34,7 +38,7 @@ public class HardcodedExamples {
 		 * Preparing /getOneEmployee.php request
 		 */
 		RequestSpecification getOneEmployeeRequest = given().header("Content-Type", "application/json")
-				.header("Authorization", token).queryParam("employee_id", "6090A");
+				.header("Authorization", token).queryParam("employee_id", "6090A").log().all();
 
 		/*
 		 * Storing Response
@@ -51,12 +55,28 @@ public class HardcodedExamples {
 		
 		//Verifying response status code is 200
 		getOneEmployeeResponse.then().assertThat().statusCode(200);
+	}
+	@Test
+	public void aPOSTcreateEmployee() {
 		
+		/*
+		 * preparing request for /createEmployee.php
+		 */
+		RequestSpecification createEmployeeRequest = given().header("Content-Type", "application/json")
+				.header("Authorization",token).body("copy payload and paste in here");
 		
+		/*
+		 * Storing response into createEmployeeResponse
+		 */
+	Response createEmployeeResponse= createEmployeeRequest.when().post("/createEmployee.php");
 		
-		
-		
-		
-		
+	/*
+	 * printing response using prettyPrint method
+	 */
+	createEmployeeResponse.prettyPrint();
 	}
 }
+
+
+
+
