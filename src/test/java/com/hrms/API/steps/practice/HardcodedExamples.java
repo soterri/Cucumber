@@ -63,12 +63,12 @@ public class HardcodedExamples {
 		 * preparing request for /createEmployee.php
 		 */
 		RequestSpecification createEmployeeRequest = given().header("Content-Type", "application/json")
-				.header("Authorization",token).body("copy payload and paste in here");
+				.header("Authorization",token).body("copy payload and paste in here").log().all();
 		
 		/*
 		 * Storing response into createEmployeeResponse
 		 */
-	Response createEmployeeResponse= createEmployeeRequest.when().post("/createEmployee.php");
+	Response createEmployeeResponse= createEmployeeRequest.when().log().all().post("/createEmployee.php");
 		
 	/*
 	 * printing response using prettyPrint method
