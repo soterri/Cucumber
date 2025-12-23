@@ -123,10 +123,20 @@ public class HardcodedExamples {
 		Response getCreatedEmployeeResponse =getCreatedEmployeeRequest.when().log().all().get("/getoneemployyee.php");
 		getCreatedEmployeeResponse.prettyPrint();
 		
+		/**
+		 * storing response employeeID into empID which will be used for verification against
+		 * stored global emp ID
+		 */
+		/**
+		 * matching exact emp id
+		 */
 		String empID = getCreatedEmployeeResponse.body().jsonPath().getString("employee[0].employee_id");
 		
 		boolean verifyingEmployeeIDMatch = empID.equalsIgnoreCase(employeeID);
 		
+		/**
+		 * asserting emp id's match
+		 */
 		Assert.assertTrue(verifyingEmployeeIDMatch);
 	}
 }
