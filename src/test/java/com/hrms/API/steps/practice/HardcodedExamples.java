@@ -2,11 +2,13 @@ package com.hrms.API.steps.practice;
 
 import static io.restassured.RestAssured.given;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import static org.hamcrest.Matchers.*;
 
 public class HardcodedExamples {
 
@@ -19,6 +21,7 @@ public class HardcodedExamples {
 	
 	static String baseURI =RestAssured.baseURI = "http://syntaxHRMSwebsitethatIdonothaveaccessto";
 	String token = "create a token on postman Bearer:kgfkhjkhjgfhkjgkhj";
+	static String employeeID;
 	
 	public void SampleTestNotes() {
 
@@ -74,9 +77,56 @@ public class HardcodedExamples {
 	 * printing response using prettyPrint method
 	 */
 	createEmployeeResponse.prettyPrint();
+	
+	/*
+	 * jsonPath to view response body which lets us get the employee ID
+	 * storing employee ID as a global variable so that we may use it with our
+	 * other calls
+	 * ASSERT THAT methods performs the assertion
+	 */
+	
+	employeeID = createEmployeeResponse.jsonPath().getString("Employee[0].employee_id");
+	System.out.println(employeeID);
+	
+	createEmployeeResponse.then().assertThat().statusCode(201);
+	
+	/**
+	 * verifying message using equalTo() method - manually importing static package 
+	 * import static org.hamcrest.Matcher.*
+	 */
+	createEmployeeResponse.then().assertThat().body("Message", equalTo("Entry Created"));
+	
+	createEmployeeResponse.then().assertThat().body("Employee[0].emp_firstname", equalTo("first name"));
+	
+	/**
+	 * verifying server using then().header()
+	 */
+	createEmployeeResponse.then().header("Server", "Apache/2.4.39 (win64) PHP/7.2.18");
+	
+	/**
+	 * verifying content-type using assertThat().header()
+	 */
+	createEmployeeResponse.then().assertThat().header("Content-Type", "application/json");
+	}
+	
+	@Test
+	public void getCreatedEmployee() {
+	/**
+	 * preparing request for /getOneEmployee.php
+	 */
+		RequestSpecification getCreatedEmployeeRequest = given().header("Content-Type", "application/json")
+		.header("Authorization", token).queryParam("employee_id", employeeID).log().all();
+		
+		/**
+		 * making call to retrieve created employee
+		 */
+		Response getCreatedEmployeeResponse =getCreatedEmployeeRequest.when().log().all().get("/getoneemployyee.php");
+		getCreatedEmployeeResponse.prettyPrint();
+		
+		String empID = getCreatedEmployeeResponse.body().jsonPath().getString("employee[0].employee_id");
+		
+		boolean verifyingEmployeeIDMatch = empID.equalsIgnoreCase(employeeID);
+		
+		Assert.assertTrue(verifyingEmployeeIDMatch);
 	}
 }
-
-
-
-
