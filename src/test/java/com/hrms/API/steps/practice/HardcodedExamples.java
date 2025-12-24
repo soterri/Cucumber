@@ -1,14 +1,24 @@
 package com.hrms.API.steps.practice;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+//import org.apache.hc.core5.http.ContentType;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import static org.hamcrest.Matchers.*;
+
+/**
+ * This @FixMethodOrder(MethodSorters.NAME_ASCENDING) will execute @Test annotation
+ * in ascending order 
+ */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class HardcodedExamples {
 
@@ -85,7 +95,7 @@ public class HardcodedExamples {
 	 * ASSERT THAT methods performs the assertion
 	 */
 	
-	employeeID = createEmployeeResponse.jsonPath().getString("Employee[0].employee_id");
+	employeeID = createEmployeeResponse.body().jsonPath().getString("Employee[0].employee_id");
 	System.out.println(employeeID);
 	
 	createEmployeeResponse.then().assertThat().statusCode(201);
@@ -122,7 +132,7 @@ public class HardcodedExamples {
 		 * making call to retrieve created employee
 		 */
 		Response getCreatedEmployeeResponse =getCreatedEmployeeRequest.when().log().all().get("/getoneemployyee.php");
-		getCreatedEmployeeResponse.prettyPrint();
+		String response = getCreatedEmployeeResponse.prettyPrint();
 		
 		/**
 		 * storing response employeeID into empID which will be used for verification against
@@ -139,5 +149,37 @@ public class HardcodedExamples {
 		 * asserting emp id's match
 		 */
 		Assert.assertTrue(verifyingEmployeeIDMatch);
+		
+		/**
+		 * verifying status ode is 200
+		 */
+		
+		getCreatedEmployeeResponse.then().assertThat().statusCode(200);
+		
+		/**
+		 * using json path class to retrieve values from response as a Strinhh
+		 */
+		JsonPath js = new JsonPath(response);
+		
+		String emplID = js.getString("employee[0].employee_id");
+		String firstName = js.getString("employee[0].emp_firstname");
+		String lastName = js.getString("employee[0].emp_lastname");
+		String birthday = js.getString("employee[0].emp_birtday");
+		String jobTitle = js.getString("employee[0].emp_job_title");
+		
+		System.out.println(emplID);
+		
+		Assert.assertTrue(emplID.contentEquals(employeeID));
+		//Second way of assertion
+		Assert.assertEquals("employeeID", emplID);
+		
+		//verifying expected first name matches actual first name
+		Assert.assertTrue(firstName.contentEquals("syntaxFirstName"));
+		
+		//verifying expected last name matches actual last name
+		Assert.assertTrue(lastName.contentEquals("syntaxLastName"));
+		
+		
+		
 	}
 }
