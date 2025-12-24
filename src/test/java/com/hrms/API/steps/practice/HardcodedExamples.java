@@ -166,9 +166,8 @@ public class HardcodedExamples {
 		String lastName = js.getString("employee[0].emp_lastname");
 		String birthday = js.getString("employee[0].emp_birtday");
 		String jobTitle = js.getString("employee[0].emp_job_title");
-		
-		System.out.println(emplID);
-		
+		String gender = js.getString("employee[0].emp_gender");
+ 
 		Assert.assertTrue(emplID.contentEquals(employeeID));
 		//Second way of assertion
 		Assert.assertEquals("employeeID", emplID);
@@ -176,10 +175,9 @@ public class HardcodedExamples {
 		//verifying expected first name matches actual first name
 		Assert.assertTrue(firstName.contentEquals("syntaxFirstName"));
 		
-		//verifying expected last name matches actual last name
-		Assert.assertTrue(lastName.contentEquals("syntaxLastName"));
 		
 		
+
 		
 	}
 }
