@@ -1,0 +1,529 @@
+Loops in Java:
+while
+do while
+for
+enhanced for loop/for each loop/advanced for loop
+
+FOR LOOP:
+when to use? when we know a number of repetition/iterations in advance
+
+SYNTAX: for(initialization; condition; increment/decrement){
+code to repeat;
+}
+-------------------------------------------------------------------------
+WHILE LOOP AND DO WHILE: if we don't know the number of repetitions
+
+WHILE vs. DO WHILE:
+
+WHILE checks condition first -> then executes codes
+
+DO WHILE: executes than checks the condition
+
+SYNTAX: 
+while(boolean condition){
+code to repeat;
+}
+
+do {
+}
+while(boolean condition){
+}
+
+
+NESTED LOOPS: loops inside another loop
+
+syntax:
+for(int i=1; i>5; i++){
+Sysout("Hello");
+
+	for(int j=q; j<=3; i++){
+	sysout-"bye";
+}
+
+}6220446108569399
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GIT Class 1
+
+What is a version control system?
+
+
+What version control are you currently using?
+GITHUB. 
+
+What's a command?
+An instruction for the terminal to be executed.
+
+SIGNS:
+The tilda ~ 
+the / indicates a directory ex: /users/terri 
+. represents an ext to a particular file or represent a hidden directory bc they don't want you to access it.
+test.txt - this dot represents a directory
+
+cd (Change directory) command is one of the most important and widely sued command.
+
+What is a directory?
+Fancy word for folder. 
+
+Home Directory: 
+the directory in which you find yourself when you first login
+
+PWD:
+print working directory
+
+List all contents in the present working directory: LS
+you can see all the current in the present withing a directing anytime using the LS command
+having the ability to navigate to a folder
+
+List of Hidden Files: ls -la
+List of all files including hidden files starting with '.'
+You can see all the files including hidden files present within a working directory anytime using
+the command ls -la
+
+Why use GIT STATUS?
+to tell the difference b/w tracked and untracked files
+indicates to us where we are in the flow
+what we staged
+
+GIT INIT: initializes repository, creates local repository
+
+.git is local repository
+
+does the local repository live in working directory. yes.
+not the same thing tho. 
+
+
+Steps to Push JavaClasses to remote repository!
+1. cd ~
+2. pwd to check you're in the right directory
+3. ls to check directories
+4. MOVE INTO eclipse-workspace/ by commanding CD eclipse-workspace/
+4. ls to check what's inside the eclipse-workspace
+5. MOVE INTO javabasics -- cd JavaBasics
+6. ls you will see bin src
+7. GIT INIT!!!! initialize your repository!!
+8. git status
+9. git add .
+10. git commit -m"message goes here"
+11. make the connection b/w your local repository to your remote repository
+ex:  git remote add origin https://github.com/soterrii/JavaClassesFrom0to19.git
+12. push code! git push -u origin master
+13. git log
+
+
+Stashing:
+
+
+
+
+
+
+SQL:
+
+What is a QUERY?
+a request to a specific set of data to get information
+
+What is SELECT?
+used to list the contents of a table from a database
+
+WHERE clause?
+used to set a condition to get a specific data from a table
+
+* -> means all info
+
+DISTINCT keyword:
+used to eliminate the duplicates from the specific column
+
+
+--display first name and last name in asc order
+select distinct emp_firstname, emp_lastname
+from hs_hr_employees
+order by emp_firstname asc;
+
+--display first name and last name with terri only in asc order
+select emp_firstname, emp lastname
+from hs_hr_employees
+where emp first_name = 'terri'
+order by emp_lastname asc;
+
+--display first name with null birthday and in a descending order
+select emp_firstname
+from hs_hr_employees
+where emp_birthday is null
+order by emp_firstname desc;
+
+--display firstname, lastname and bday is not null
+select emp_Firstname, emp_lastname, emp_bday
+from hs_hr_employees
+where emp_bday is not null;
+
+--how to display info about employees who do not have assigned job title
+select * from hs_hr_employees
+where job_title is null;
+
+--how to find employees first, last name that do not have phone number and display first names in abc order
+select emp_firstname, emp_lastname
+from hs_hr_employees
+where emp_phonenumber is null
+order by emp_firstname asc;
+
+--how to display about all employees whose DOB has been entered
+--We want to see employees sorted by last name Z-A;
+select emp_firstname
+from hs_hr_employees
+where emp_bday is not null
+order by emp_firstnam desc;
+
+--display all the info were first name is John and lastname is Doe
+select * from hs_hr_employees
+where emp_firstname = 'john' and emp_lastname = 'doe'
+
+--display all the info from employess whose_emp_ids 12565, 415454, 
+select * from hs_hr_employees
+where employee_id = 545454 and emp_firstname = "Terri" and emp_lastname = "Thach"
+
+OR
+select * hs_hr_employees
+where employee_id = 5454545 or employee_id = 54878787
+
+--displaying query to get multiple employees id without redundant code of OR
+select * from hs_hr_employees
+where employee_id in (545454, 88787, 54578787, 8988); 
+
+select * from hs_hr_employees
+where emp_firstname in ('Terri', 'Savannah', 'Sophy', 'Ange')) and (emp_lastname is ('Thach', 'Meu'));
+
+--display all the info from job title except bakery chef
+select * from ohrm_job_title
+where not job_title = 'bakery chef';
+
+--display employees first name and last name and employee ids from 11123 until 13565 using KW between
+select emp_firstname, emp_lastname, employee_id
+from hs_hr_employees
+where employee_id between 11123 and 13565 
+order by employee_id asc;
+
+--display first name which starts with a j and ends with an a
+select emp_firstname from hm_hr_employees
+where emp_firstname like 'j&a%';
+
+--display first names which starts with 'an' 
+select emp_firstname from hs_hr_employees
+where emp_firstname like "an%'
+
+--display first name last name and bdat for those employees who were born after 2000
+select emp_firstname, emp_lastname, emp_birthday 
+from hr_hm_employees
+where emp_birthday >2000;
+
+
+--display all nationalities that start with an a 
+select * from ohrm_nationality
+where name like 'a%';
+
+--display all employees who were born in February
+select emp_Firstname, emp_lastname, emp_birthday
+from hr_hm_employees
+where emp_birthday like "___-02-__'; or '%-02-%;
+
+
+
+
+Functions in SQL
+Single row --> upper(), lower(), initcap()
+
+select upper(first_name) -> will convert to upper case automatically
+from hr.employees;
+
+select first_name
+from hr.employees
+where upper(first name) = 'Terri'; -> need to specify a condition ourselves
+
+
+select * from hr.employees
+
+select UPPER(first_name);
+from hr.employees;
+
+select first_name
+from hr.employees
+where upper(first_name) = 'Ellen';
+
+--display the youngest employee from our db
+select min(emp_bday), emp_firstname
+from hs_hr_employees;
+
+
+--display the gender of employees(male or female) 
+select count(*), emp_gender
+from hs_hr_employeess not null
+group by emp_gender;
+
+select * from ohrm_job_title;
+select * from hs_hr_employees
+--display the counts of employees who are developers and bakery chefs
+select count(*), job_title_code
+from hs_hr_employees
+where job_title_code in(10,24)
+group by job_title_code;
+
+
+--display how many employeesfirst name starts with A?
+select count(*) from hr.employees
+where first_name like 'A%';
+
+--verify how any DB admins, application developers, production manager
+select * from ohrm_job_title;
+select count(*) job_title_code
+from hs_hr_employees
+where job_title_code in (8,9,14)
+group by job_title_code;
+
+--display the employee count per job title
+-- i want to see where the employee count is more then 3
+select count(*), job_title_code
+from hs_hr_employees
+where job_title_code is not null
+group by job_title_code
+having count(*)>3;
+
+--display youngest employees in each job title
+--but display only who were born after 2000
+select max(emp_birthday), job_title_code
+from hs_hr_employees
+group by job_title_code
+having max(emp_birthday) >'2000';
+
+select * from hs_hr_emp_basicsalary;
+
+select avg(eb_basic_salary)
+from hs_hr_basicsalary;
+
+--display average salary per pay period
+select avg(eb_basic_salary), payperiod_code
+from hs_hr_basicsalary
+group by payperiod_code;
+
+--display avg salary per pay period but less then 90000
+select avg(ebsal_basic_salary), payperiod_code
+from hs_hr_basicssalary
+group by payperiod_Code
+having abg(eb_basic_salary) < 90000;
+
+
+SubQueries
+Subquery is a query within a query
+has two parts - 1. outer query 2. inner query
+
+Result of inner query will be used as an input from the outer query
+
+select * from ohrm_job_title
+
+multiple row functions - alot of entries and single results
+
+--display all info about employees who are developers
+select id from ohrm_job_title 
+where job_id = 'Developer'; ->  returns id from job title table
+
+select * from hs_hr_employees
+where job_title_code = (select id from ohrm_job_title where job_title = 'Developer');
+
+--display the first name, last name of the employees who are Cambodian
+
+select * from ohrm_nationality;
+select id from ohrm_nationality;
+where name = 'Cambodian' -> returns id for Turkish nationality which is 182
+
+select emp_firstname, emp_lastname
+from hs_hr_employees
+where nation_code = (select id from ohrm_nationality;
+where name = 'Cambodian');
+
+select emp_firstname, emp_lastname
+from hs_hr_employees
+where nation_code = 182;
+
+--display second largest salary from salary table
+select max(ebsal_basic_salary) 
+from hs_hr_emp_basicsalary
+where(ebsal_basic_salary) < (select max(ebsal_basic_salary) 
+from hs_hr_emp_basicsalary)
+where where(ebsal_basic_salary) < (select max(ebsal_basic_salary) 
+from hs_hr_emp_basicsalary);
+
+
+
+--display all the info about info employee who gets the lowest salary
+select min(ebsal_basic_salary)
+from hr_emp_basic_salary;
+
+select * from hs_hr_empbasicsalary;
+select * from hs_employees;
+
+select emp_number
+from hs_hr_empbasicsalary
+where eb_basic_salary = (select min(ebsal_basic_salary)
+from hs_hr_emp_basicsalary);
+
+
+select emp_firstname, emp_lastname, ebsal_basic_salary 
+from hs_hr_employees
+where emp_number = (select emp_numb from hr_emp_basicsalary
+where ebsal_basic_salary = (select min(ebsal_basic_salary)
+from hs_hr_emp_basicsalary));
+
+
+--INNER JOIN
+-
+-display first, last names, and the nationality for each employee
+select emp_firstname, emp_last_name, name
+from hs_hr_employees inner or full or left or right join ohrm_nationality
+on hs_hr_employees.nation_code = ohrm_nationality.id;
+
+--display all the info about the emp who emp id is 1452
+select *  from hs_hr employees
+where(filtering rows) emp_id = '1452'
+
+--inner join
+--display firstname, lastname, and employment status
+select emp_firstname, emp_lastname, emp_status
+from hs_hr_employees emp join ohrm_employment_status st
+on emp.emp_status = st.id;
+
+--display emp number, fname, lname, who works awesome office
+select * from ohrm_location;
+
+select locs.emp_number, emp_firstname, emp_lastname, name
+from hs_hr_employees emp join hs_hr_emp_locations locs
+on emp.emp_number = locs.emp_number
+join ohrm_location loc
+on locs.location_id = loc.id  
+where name = 'Awesome Office';
+
+--display info (fname and lname) about the employees and their job titles
+--even if there are job titles assigned to them
+select emp_firstname, emp_lastname, job_title
+from hs_hr_employees left join ohrm_job_title jt
+on emp.job_title_code = jt.id
+order by job_title;
+
+
+--display emp num, fname, lname, and nationality
+--even though there is no nationality specified for the emp
+
+select emp_number, emp_fname, emp_lname name 
+from hs_hr_employees emp join ohrm_nationality nat
+on emp.nation_code = nat.id
+order by emp_lastname;
+
+
+select emp_number, emp_fname, emp_lname name 
+from hs_hr_employees emp left join ohrm_nationality nat
+on emp.nation_code = nat.id
+order by emp_lastname;
+
+select emp_number, emp_fname, emp_lname name 
+from hs_hr_employees emp right join ohrm_nationality nat
+on emp.nation_code = nat.id
+order by emp_lastname;
+
+
+--DISPLAY THE EMPLOYEES WHO GET HIRED ON THE SAME DATE
+select * from hr_hs_emp;
+
+select e1.emp_fname, e1.emp_lname, e1.joined_date, e2.emp_fname, e2.emp_lname
+from hs_hr_employees e1 join hs_hr_employees e2
+on e1.joined_date = e2.joined_date
+where e1.emp_fname != e2.emp_fname;
+
+--DISPLAY EMPS AND THEIR SUPERVISORS
+--FIRSTNAME SUPERVISOR # AND SUPERVISOR FNAME
+select emp.emp_num, emp.empfname, emp.erep_sup_emp_number, sup.emp_fname
+from hs_hr_employees emp join hs_hr_employees sup
+on emp.erep_sup_emp_number = sup.erep_sup_emp_number;
+
+SET OPERATORS - SQL COMMANDS
+union all, union, minus, intersect
+abcde
+unionall
+cdeerg
+===abcdeederg
+
+abcde
+union
+cderg
+=== abcderg
+
+abcde
+minus
+cderg throws out the common data in 2 diff select statements
+=== abrg
+
+abcde
+intersect
+cderg
+=== keeps only cde bc its keeping common data in 2 different select statements 
+
+
+
+FROM ORACLE LIVE SQL 
+SELECT * FROM hr.employees;
+
+SELECT emp.first_name AS Employee,
+       manager.first_name AS Manager
+FROM hr.employees emp join hr.EMPLOYEES manager
+on emp.employee_id=manager.MANAGER_ID
+order by manager.first_name asc;
+
+--display first name, last name, and city of the employees who work in the company
+select first_name, last_name, city
+from hr.EMPLOYEES emp join hr.DEPARTMENTS dep
+on emp.DEPARTMENT_ID = dep.MANAGER_ID
+join hr.LOCATIONS loc
+on dep.LOCATION_ID = loc.location_id;
+
+
+
+--display the common data from id and depts
+select department_id from hr.EMPLOYEES
+intersect
+select DEPARTMENT_ID from hr.DEPARTMENTS;
+
+--display all the last names and first names
+select first_name as names from hr.EMPLOYEES
+union all
+select last_name from hr.EMPLOYEES;
+
+--display the common data from id and depts
+select department_id from hr.EMPLOYEES
+intersect
+select DEPARTMENT_ID from hr.DEPARTMENTS;
+
+--display all the last names and first names
+select first_name as names from hr.EMPLOYEES
+union all
+select last_name from hr.EMPLOYEES;
+
+--display common manager id from emps and depts and combine dept id
+--from emp table but remove duplicates
+select manager_id from hr.EMPLOYEES
+intersect 
+select manager_id from hr.DEPARTMENTS
+union
+select department_id from hr.EMPLOYEES;
+
+
+
+LIKE operator(wildcard) used in where clause to search for a specified pattern in the column
