@@ -21,6 +21,9 @@ public class PersonalDetailsPageElements {
 	
 	@FindBy(xpath="//div[@id='profile-c']//h1")
 	public WebElement profilePic;
+
+	@FindBy(xpath="//text[@id='empName']")
+	public WebElement employeeName;
 	
 	
 	public PersonalDetailsPageElements() {

@@ -14,7 +14,7 @@ import io.cucumber.java.en.Then;
 public class DashboardSteps extends CommonnMethods {
 
 	// write implementation for THEN user see dashboard menu is displayed step w/o
-	// usnig runner
+	// using runner
 	/*
 	 * first add annotation @Then then specify entire step, user see DB menu is
 	 * displayed during execution, calling the method that has matching tags once,

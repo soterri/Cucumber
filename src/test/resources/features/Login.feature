@@ -5,48 +5,55 @@ Feature: Login
   Scenario:
    Valid admin login
 
-    Given user navigated to HRMS
     When user enters valid admin username and password
     And user clicks on login button
-    Then admin user is succesfully logged in
+    Then user is successfully added
 
-  @smoke
+  @regression @smoke
   Scenario:
   Valid ess login
 
-    Given user navigated to HRMS
     When user enter valid ess username and password
     And user clicks on login button
     Then ess user is successfully logged in
+# enhancing test with Scenario Outline
 
+  @smoke
   Scenario Outline:
     When user enters valid "<Username>" and "<Password>"
     And user clicks on login button
     Then "<FirstName>" user is successfully logged in
 
     Examples:
-      | Username | Password   |FirstName
-      | Admin    | 	hum12324@ |Admin
-      | dgg77    |  Syntax123 |Asel
+      | Username | Password  |
+      | Admin    | hum12324@ |
+      | dgg77    | Syntax123 |
+      | dgfhfhfh | fdhdfhdh  |
+# adding multiple employees using CucumberDataTable
 
-#adding multiple employyees using CucumberDataTable
-@inProgress
-Scenario:
+  @inProgress
+  Scenario:
 Adding multiple employees
-When user enters employee details and click on save
-|FirstName|MiddleName|LastName
-|John|J|Smith
-|Jane|T|Smith
-Then employee is added
 
+    When user enters employee details and click on save
+      | FirstName | MiddleName |
+      | John      | J          |
+      | Jane      | T          |
+    Then employee is added
 
-
-
-@regression
-Scenario:
+  @regression
+  Scenario:
 Login with valid username and invalid password
 
-    Given user navigated to HRMS
     When user enters valid username and invalid password
     And user clicks on login button
     Then user sees invalid credentials text on login page
+
+  @temp
+  Scenario:
+Login with invalid credentials
+
+    When user enter valid ess username and password
+      | UserName | Password   | ErrorMessage        |
+      | Admin    | Admin123   | Invalid Credentials |
+      | Hello    | Syntax123! | Invalid Credentials |

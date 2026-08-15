@@ -71,7 +71,6 @@ every gherkin step.
 1 gherkin step should have only 1 implementation step
 doesn't matter which feature file but has to have 1 gherkin step 1 java step
 
-
 TestRunner class will be executing our cucumber features using junit
 based on configs it can execute one or multiple feature files
 to execute feature files, we will be using jUnit. so when we add in in pom
@@ -90,27 +89,34 @@ glue = com\hrms\steps - we we can find implementation code for gherkin steps
 
 dryRun - if its set to true, then it will scan to find whether we missed any steps/implementation or not
 
+monochrome - translate the console data to be more understandable
+
 HOOKS - a block of code that gets executed before and after each scenario
 @Before
 @After
 When preconditions and post condition are same for all scenarios
 
+Use background when preconditions is all the same for the scenarios
 
 Execution process
 1. Before Hook
-2. Background
-3. All scenario steps
+2. Background will get executed
+3. All scenario steps will get executed
 4. After hook
 same process for every scenario
 
 Hooks VS Background
-hooks applicable for all scenarios within the project
+hooks applicable for all scenarios within the project @Before and @After 
 while background for all scenarios within particular feature file 
 that has the same gherkin steps
 
 Scenario consists of steps that will be executed only once whille
-using scenario outline we will execue same steps/scenarios # of times
+using scenario outline we will execute same steps/scenarios # of times
 depending on how much data we will specify in Examples
+
+Difference between Scenario Outline and DataTable?
+Scenario outline has the inbuilt mechanism to loop through each scenario preconditions steps hooks on amount of data
+with datatable we have to implement the logic of looping
 
 Example of a US for Cucumber
 US 55454: As an admin, user should see 8 dashboard menus displayed
@@ -125,4 +131,4 @@ Directory
 
 Implementing Cucumber Maven Reports:
 
-1. Specify json plugin in our test runner - it will generste .json file
+1. Specify json plugin in our test runner - it will generate .json file

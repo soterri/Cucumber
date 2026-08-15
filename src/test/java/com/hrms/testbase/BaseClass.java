@@ -3,6 +3,7 @@ package com.hrms.testbase;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -22,6 +23,7 @@ public class BaseClass {
 		switch (ConfigsReader.getProperty("browser").toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
+			driver=new ChromeDriver();
 			//System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
 
 

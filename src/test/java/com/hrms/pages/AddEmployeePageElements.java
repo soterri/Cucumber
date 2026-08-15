@@ -16,7 +16,7 @@ public class AddEmployeePageElements extends CommonnMethods {
 	@FindBy(id = "lastName")
 	public WebElement lastName;
 	
-	@FindBy(xpath="//input[@id='middleName")
+	@FindBy(xpath="//input[@id='middleName']")
 	public WebElement middleName;
 
 	@FindBy(id = "employeeId")
@@ -36,6 +36,9 @@ public class AddEmployeePageElements extends CommonnMethods {
 
 	@FindBy(id = "btnSave")
 	public WebElement saveBtn;
+
+	@FindBy(id="empName")
+	public WebElement employeeName;
 
 	public AddEmployeePageElements() {
 		PageFactory.initElements(BaseClass.driver, this);

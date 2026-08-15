@@ -1,0 +1,77 @@
+Tier 1 architecture
+
+Client - server architecture 1 tier
+
+Presentation Layer - the screen is visible
+
+Application layer - businss logic of the application
+
+Data Layer - where all database is available
+
+When presentation layer, application layer, and data layer are available at one place its 1 tier architecture
+a calculator - presentation, application, data layer - these connected internally via APIs
+-----------------------------------------------------------------------
+Tier 2 Architecture
+when presentation layer is available at one place and application layer and data layer is available elsewhere
+
+Tier 3 Architecture
+When presentation layer is in one place, application layer is available in second place, and data layer is available at third place
+
+facebook, amazon
+
+APIs hosted over the internet are called web services
+
+all webservices are api's and not all api's are webservices
+
+REST
+SOAP
+
+TWO TYPES OF API
+public - api's that are accessible throughout the server, anyone can access these api's
+private api's - banking apps, insurance apps, socia media things that needs username and passwords
+
+authentication and authorization
+
+it asks 4 questions
+who are you
+are you allowed to use the system
+what access do you have
+show the id?
+
+two types of applications that use private api's
+
+Stateful apps 
+state of the server memory is true
+enter username ans password - example fb login
+
+Stateless app - state of the server memory is false
+
+session ID/token - we use this to access the application for a certain period of tine
+
+JWT - Json Web Token
+header
+payload
+signature
+
+bearer token 
+mac token
+grants
+
+HTTP - hypertext transfer protocol
+allows our website to communicate over the internet
+
+CRUD operations
+1. create a record in the system - such as adding an employee
+2. retrieving a record from the system
+3. updating a record in the system
+4. delete a record
+create - POST
+retrieve - GET
+update - PUT/PATCH
+delete - DELETE 
+
+Swagger Document - dev team will provide this swagger document to me
+
+
+
+

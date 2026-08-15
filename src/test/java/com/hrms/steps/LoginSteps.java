@@ -1,20 +1,26 @@
 package com.hrms.steps;
 
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Assert;
+
 import com.hrms.utils.CommonnMethods;
 import com.hrms.utils.ConfigsReader;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import junit.framework.Assert;
+
 
 public class LoginSteps extends CommonnMethods {
 
-	@Given("user navigated to HRMS")
-	public void user_navigated_to_hrms() {
-		setUp();// implementation code
-
-	}
+//	@Given("user navigated to HRMS")
+//	public void user_navigated_to_hrms() {
+//		setUp();// implementation code
+// wont needthis code anymore bc we have Hooks @before
+//	}
 
 	@Given("user is logged in with valid admin credentials")
 	public void user_is_logged_in_with_valid_admin_credentials() {
@@ -71,6 +77,19 @@ public class LoginSteps extends CommonnMethods {
 	@When("user enters valid employee name and last name")
 	public void user_enters_valid_employee_name_and_last_name() {
 		
+	}
+	@When("I enter invalid username and password ans see error message")
+	public void i_enter_invalid_username_and_password_and_see_error_message(DataTable invalidCredentials) {
+		List<Map<String,String>> list = invalidCredentials.asMaps();
+		for(Map<String,String> lmap:list) {
+			sendText(login.username, lmap.get("username"));
+			sendText(login.password, lmap.get("password"));
+			click(login.buttonLogin);
+			
+			Assert.assertEquals("no correct error message is displayed", lmap.get("ErrorMessage"), login.errorMsg.getText());
+			//always makes sure that spelling is correct even if LC or UC ex: Error Message - ErrorMessage
+			
+		}
 	}
 
 }

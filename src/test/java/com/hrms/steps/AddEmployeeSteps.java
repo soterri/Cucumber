@@ -3,7 +3,8 @@ package com.hrms.steps;
 import java.util.List;
 import java.util.Map;
 
-import com.hrms.pages.PersonalDetailsPageElements;
+import org.junit.Assert;
+
 import com.hrms.utils.CommonnMethods;
 import com.hrms.utils.Constants;
 import com.hrms.utils.ExcelUtility;
@@ -12,7 +13,6 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import junit.framework.Assert;
 
 public class AddEmployeeSteps extends CommonnMethods {
 
@@ -20,18 +20,26 @@ public class AddEmployeeSteps extends CommonnMethods {
 	public void user_navigates_to_AddEmployeePage() {
 		dashboard.navigateToAddEmployee();
 	}
-
+	//this method has hardcoded values - use line 31 
+	//@When ("user enters employees first name and last name")
+	//public void user_enters_employees_firstname_and_lastname() {
+		//sendText(addEmp.firstName, "terri");
+//		sendText(addEmp.lastName, "thach");
+//	}
 	// this method is an enhanced method and parameter values are
 	// supplied from gherkin Feature File
 	@When("user enters employees {string} and {string}")
 	public void user_enters_first_name_and_last_name(String firstName, String lastName) {
 		sendText(addEmp.firstName, firstName);
 		sendText(addEmp.lastName, lastName);
+		//instead of hard coding - pass parameters
+//		sendText(addEmp.firstName, "terri");
+//		sendText(addEmp.lastName, "thach");
 	}
 
 	@When("user clicks save button")
 	public void user_clicks_save_button() {
-		// WaitandClick(addEmp.saveBtn);
+		click(addEmp.saveBtn);
 
 	}
 
@@ -58,27 +66,14 @@ public class AddEmployeeSteps extends CommonnMethods {
 		addEmp.createEmpLoginCR();
 	}
 
-	@When("user clicks on save button")
-	public void user_clicks_on_save_button() {
-
-	}
-
 	@Then("employee is added succesfully")
 	public void employee_is_added_succesfully() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+
 	}
 
 	@When("user enters employees first name and last name")
 	public void user_enters_employees_first_name_and_last_name() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
-	}
 
-	@Then("employee is added successfully")
-	public void employee_is_added_successfully() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
 	}
 
 	@When("user enters employees {string}, {string}, and {string}")
@@ -86,11 +81,17 @@ public class AddEmployeeSteps extends CommonnMethods {
 		sendText(addEmp.firstName, fName);
 		sendText(addEmp.lastName, lName);
 		sendText(addEmp.middleName, middleName);
+		
 	}
 
 	@Then("{string}, {string}, and {string} is added succesfully")
-	public void and_is_added_succesfully(String string, String string2, String string3) {
-		System.out.println("Employee is added");
+	public void and_is_added_succesfully(String fName, String middleName, String lName) {
+	
+		    String expectedFullName = fName + " " + middleName + " " + lName;
+		    String actualFullName = addEmp.employeeName.getText();
+		    Assert.assertEquals(expectedFullName, actualFullName);
+		    System.out.println("Employee is added successfully");
+		
 	}
 
 	@When("user enters employee details and click on save")
@@ -100,17 +101,20 @@ public class AddEmployeeSteps extends CommonnMethods {
 		for (Map<String, String> addEmpListMap : addEmployeeList) {
 
 			String fname = addEmpListMap.get("FirstName");
-			String mname = addEmpListMap.get("MiddleName");
-			String lname = addEmpListMap.get("lastName");
+			String mname = addEmpListMap.get("Mname");
+			String lname = addEmpListMap.get("Lname");
 
-			sendText(addEmp.firstName, addEmpListMap.get("FirstName"));
-			sendText(addEmp.lastName, addEmpListMap.get("lastName"));
-			sendText(addEmp.middleName, addEmpListMap.get("MiddleName"));
+			//sendText(addEmp.firstName, addEmpListMap.get("FirstName"));//instead of calling map.get everytime store firstname in resuable variables
+			sendText(addEmp.firstName, fname);
+			//sendText(addEmp.lastName, addEmpListMap.get("lastName"));
+			sendText(addEmp.lastName, lname);
+			//sendText(addEmp.middleName, addEmpListMap.get("MiddleName"));
+			sendText(addEmp.middleName, mname);
 			click(addEmp.saveBtn);
-
+			
 			String actual = pdetail.profilePic.getText();
 			String expected = fname + " " + lname + " " + mname;
-			Assert.assertEquals("Emp is not added successfully", "");
+			Assert.assertEquals("Emp is not added successfully", expected, actual);
 			jsClick(dashboard.addEmp);
 
 		}
@@ -132,22 +136,22 @@ public class AddEmployeeSteps extends CommonnMethods {
 
 	@When("user enters employee data from {string} excel sheet then employee is added")
 	public void user_enters_employee_data_from_excel_sheet_then_employee_is_added(String sheetName) {
-		List<Map<String, String>> excelList=ExcelUtility.excelIntoListOfMaps(Constants.TESTDATA_FILEPATH, sheetName);
+		List<Map<String, String>> excelList = ExcelUtility.excelIntoListOfMaps(Constants.TESTDATA_FILEPATH, sheetName);
 
-		for(Map<String, String> data:excelList) {
+		for (Map<String, String> data : excelList) {
 			String fname = data.get("FirstName");
 			String mname = data.get("MiddleName");
 			String lname = data.get("LastName");
-			
+
 			sendText(addEmp.firstName, fname);
 			sendText(addEmp.middleName, mname);
 			sendText(addEmp.lastName, lname);
 			click(addEmp.saveBtn);
-			
-		//	String actual = pdetail.profileName.getText();
-			String expected = fname+" "+mname+" "+lname;
-			//Assert.assertEquals("Employee is not added successfully", expected, actual);
-			//jsClick(dashboard.addEmp);
+
+			// String actual = pdetail.profileName.getText();
+			String expected = fname + " " + mname + " " + lname;
+			// Assert.assertEquals("Employee is not added successfully", expected, actual);
+			// jsClick(dashboard.addEmp);
 		}
 	}
 }
